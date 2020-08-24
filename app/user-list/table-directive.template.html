@@ -1,0 +1,37 @@
+<style>
+    .selected { background-color: red; }
+  </style>  
+
+
+<table style="width:100%">
+    <tr ng-repeat="user in data track by $index">
+        
+        <td>{{ user.name }}</td> 
+      <td>{{ user.email }}</td> 
+     
+      <td>{{ user.active }}</td>
+    </tr>
+  </table>
+
+
+  <table>
+  
+
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>VerifiedAt</th>
+    </tr>
+
+    <tr ng-repeat="user in data track by $index " ng-click="$ctrl.rowHighilited(user.id, user.name, user.email, user.active)"
+    ng-class="{selected: user.id === $ctrl.selectedRow}" >
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.active}}</td>
+      <td>{{user.email_verified_at}}</td>
+    </tr>
+
+  </table>

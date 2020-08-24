@@ -1,0 +1,54 @@
+<style>
+  .selected { background-color: red; }
+</style>  
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <!--Sidebar content-->
+      <!-- 
+      <p>
+        Search:
+        <input ng-model="$ctrl.query" />
+      </p>
+
+      <p>
+        Sort by:
+        <select ng-model="$ctrl.orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>
+        </select>
+      </p> -->
+
+    </div>
+    <div class="col-md-10">
+    </div>
+    <table>
+
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Ammount</th>
+
+      </tr>
+    <td><input ng-model="$ctrl.valueObject.id"></td>
+    <td><input ng-model="$ctrl.valueObject.name"></td>
+    <td><input ng-model="$ctrl.valueObject.date"></td>
+    <td><input ng-model="$ctrl.valueObject.ammount"></td>	
+ 
+      <td><button ng-click="$ctrl.store();" ng-hide={{hideAddBtn}}>Add</button></td>
+      <td><button ng-click="$ctrl.update();" ng-hide={{hideUpdateBtn}}>Update </button></td>
+      <td><button ng-click="$ctrl.destroy();" ng-hide={{hideCancelBtn}}>Delete</button></td>
+      <td><button ng-click="cancel();" ng-hide={{hideCancelBtn}}>Cancel</button></td>
+      <tr ng-repeat="sallary in $ctrl.sallaryList track by $index" ng-click="$ctrl.rowHighilited(sallary.id, sallary.name,sallary.date,sallary.ammount)"
+        ng-class="{ selected: sallary.id === $ctrl.selectedRow}">
+        <td>{{sallary.id}}</td>
+        <td>{{sallary.name}}</td>
+        <td>{{sallary.date}}</td>
+        <td>{{sallary.ammount}}</td>
+      </tr>
+
+    </table>
+  </div>
+</div>

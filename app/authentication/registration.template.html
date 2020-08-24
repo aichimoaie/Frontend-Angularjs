@@ -1,0 +1,44 @@
+<form name="myForm" ng-submit="$ctrl.register()" role="form" novalidate>
+    <div class="field-row">
+        <label class="form-label" for="name">Name</label>
+        <input type="text" name="name" id="name" class="field" ng-model="$ctrl.valueObject.name"  required >
+         <span style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+ 	 <span ng-show="myForm.name.$error.required">Name is required.</span>
+    </div>
+
+    <div class="field-row">
+        <label class="form-label" for="email">email</label>
+        <input type="text" name="email" id="email" class="field" ng-model="$ctrl.valueObject.email"  required >
+         <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+ 	 <span ng-show="myForm.email.$error.required">email is required.</span>
+    </div>
+   
+    <div class="field-row">
+	<label for="password">Password</label>
+	<input type="password" name="password" class="field" ng-model="$ctrl.valueObject.password" required>
+	 <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+ 	 <span ng-show="myForm.password.$error.required">password is required.</span>
+    </div>
+	
+       <div class="field-row">
+	<label for="password_confirmation">Password confirmation</label>
+	<input type="password" name="password_confirmation" class="field" ng-model="$ctrl.valueObject.password_confirmation" required>
+	 <span style="color:red" ng-show="myForm.password_confirmation.$dirty && myForm.password_confirmation.$invalid">
+ 	 <span ng-show="myForm.password_confirmation.$error.required">password is required.</span>
+    </div>
+   <p>{{$ctrl.checkPasswordMatch()}}</p>
+   
+   <!-- <div class="field-row">
+      <label class="form-label" for="dateOfBirth">Date of birth</label>
+      <input type="date" id="dateOfBirth" class="field date-field dob-field" min="1900-01-01" max="2015-09-18"  required>
+      <span class="message"></span>
+   </div> -->
+   
+    
+	
+    <div class="form-actions">
+	<button type="submit" ng-disabled="myForm.name.$invalid || myForm.password.$invalid || myForm.password_confirmation.$invalid" class="btn btn=primary btn-lg sharp">Register</button>
+    </div>
+
+<p><a href="#!/login">Back to login</a></a></p>
+</form>

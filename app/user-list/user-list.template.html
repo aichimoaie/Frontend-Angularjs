@@ -1,0 +1,71 @@
+<style>
+  .selected { background-color: red; }
+</style>  
+
+<div class="container-fluid">
+  <div class="row">
+   
+    <div class="col-md-10">
+
+      <table>
+  
+
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>VerifiedAt</th>
+        </tr>
+
+        <tr ng-repeat="user in $ctrl.userList track by $index" ng-click="$ctrl.rowHighilited(user.id, user.name, user.email, user.active)"
+          ng-class="{ selected: user.id === $ctrl.selectedRow}">
+          <td>{{user.id}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.active}}</td>
+          <td>{{user.email_verified_at}}</td>
+        </tr>
+
+      </table>
+
+      <!-- <my-edit data="$ctrl.userList"></my-edit> -->
+    </div>
+    <div class="col-md-2">
+
+      <tr>
+
+
+        <td><button ng-click="$ctrl.store();" ng-hide={{hideAddBtn}}>Add</button></td>
+        <td><button ng-click="$ctrl.update();" ng-hide={{hideUpdateBtn}}>Update </button></td>
+        <td><button ng-click="$ctrl.destroy();" ng-hide={{hideCancelBtn}}>Delete</button></td>
+        <td><button ng-click="cancel();" ng-hide={{hideCancelBtn}}>Cancel</button></td>
+      </tr>
+
+
+      <div ng-if="$ctrl.selectedRow">
+        <td> ID {{$ctrl.valueObject.id}}</td>
+        <td> Nume <input ng-model="$ctrl.valueObject.name"></td>
+        <td> Email <input ng-model="$ctrl.valueObject.email"></td>
+        <td> Active<input ng-model="$ctrl.valueObject.active"></td>
+        <td> New Password<input ng-model="$ctrl.valueObject.password"></td>
+        
+      </div>
+      <!--Sidebar content-->
+      <!-- 
+      <p>
+        Search:
+        <input ng-model="$ctrl.query" />
+      </p>
+
+      <p>
+        Sort by:
+        <select ng-model="$ctrl.orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>
+        </select>
+      </p> -->
+
+    </div>
+  </div>
+</div>

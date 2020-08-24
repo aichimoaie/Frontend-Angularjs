@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" ng-app="phonecatApp">
+
+<head>
+  <meta charset="utf-8">
+  <title>Google Phone Gallery</title>
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="app.animations.css" />
+
+  <script src="lib/jquery/dist/jquery.js"></script>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-animate/angular-animate.js"></script>
+  <script src="lib/angular-resource/angular-resource.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="lib/angular-cookies/angular-cookies.js"></script>
+  <script src="app.module.js"></script>
+  <script src="app.config.js"></script>
+  <script src="app.animations.js"></script>
+  <script src="core/core.module.js"></script>
+  <script src="core/checkmark/checkmark.filter.js"></script>
+  <script src="core/phone/phone.module.js"></script>
+  <script src="core/phone/phone.service.js"></script>
+  <script src="phone-list/phone-list.module.js"></script>
+  <script src="phone-list/phone-list.component.js"></script>
+  <script src="phone-detail/phone-detail.module.js"></script>
+  <script src="phone-detail/phone-detail.component.js"></script>
+
+  <script src="core/office/office.module.js"></script>
+  <script src="core/office/office.service.js"></script>
+  <script src="office-list/office-list.module.js"></script>
+  <script src="office-list/office-list.component.js"></script>
+
+  <script src="core/registration/registration.module.js"></script>
+  <script src="core/registration/registration.service.js"></script>
+
+  <script src="core/authentication/authentication.module.js"></script>
+  <script src="core/authentication/authentication.service.js"></script>
+  <script src="authentication/authentication.module.js"></script>
+  <script src="authentication/authentication.component.js"></script>
+
+
+  <script src="core/user/user.module.js"></script>
+  <script src="core/user/user.service.js"></script>
+  <script src="user-list/user-list.module.js"></script>
+  <script src="user-list/user-list.component.js"></script>
+
+
+ 
+  <script src="sallary-list/sallary-list.module.js"></script>
+  <script src="sallary-list/sallary-list.component.js"></script>
+  <script src="sallary-list/sallary-list.service.js"></script>
+
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Aplicatie management companie</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#!sallary"><i class="fa fa-home"></i>Sallary</a></li>
+          <li><a href="#!user"><i class="fa fa-home"></i>User</a></li>
+          <li><a href="#!phones"><i class="fa fa-shield"></i> Phones</a></li>
+          <li><a href="#!office"><i class="fa fa-shield"></i> Birouri</a></li>
+          <li><a href="#!departament"><i class="fa fa-comment"></i> Departamente</a></li>
+          <li><a href="#!salar"><i class="fa fa-comment"></i> Salarii</a></li>
+          
+         
+          <li ng-if="hasCookie()"><a href="#!login"><span class="icon mail"></span>Logout</a></li>
+          <li ng-if="!hasCookie()"><a href="#!login"><span class="icon mail"></span>Login</a></li>
+          <li ng-if="!hasCookie()"><a href="#!register"><i class="fa fa-comment"></i> Register</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="view-container">
+    <div ng-view class="view-frame"></div>
+  </div>
+
+</body>
+
+
+</html>

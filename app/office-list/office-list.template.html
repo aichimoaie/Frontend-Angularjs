@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <!--Sidebar content-->
+      <!-- 
+      <p>
+        Search:
+        <input ng-model="$ctrl.query" />
+      </p>
+
+      <p>
+        Sort by:
+        <select ng-model="$ctrl.orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>
+        </select>
+      </p> -->
+
+    </div>
+    <div class="col-md-10">
+    </div>
+    <table>
+
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+      </tr>
+    <td><input ng-model="$ctrl.valueObject.id"></td>
+    <td><input ng-model="$ctrl.valueObject.name"></td>	
+ 
+      <td><button ng-click="$ctrl.store();" ng-hide={{hideAddBtn}}>Add</button></td>
+      <td><button ng-click="$ctrl.update();" ng-hide={{hideUpdateBtn}}>Update </button></td>
+      <td><button ng-click="$ctrl.destroy();" ng-hide={{hideCancelBtn}}>Delete</button></td>
+      <td><button ng-click="cancel();" ng-hide={{hideCancelBtn}}>Cancel</button></td>
+      <tr ng-repeat="birou in $ctrl.countryList track by $index" ng-click="rowHighilited(birou.id, birou.name)"
+        ng-class="{selected: birou.id === selectedRow}">
+        <td>{{birou.id}}</td>
+        <td>{{birou.name}}</td>
+      </tr>
+
+    </table>
+  </div>
+</div>
