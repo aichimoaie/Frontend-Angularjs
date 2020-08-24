@@ -15,16 +15,16 @@ angular.
                     email: "",
                     active: 0,
                     password :"",
-
-
-                    //role??
+                    roles : ""
 
                 }
+
+            
                 self.index = function () {
                     userService.index(function (response) {
 
                         self.userList = response;
-
+                    
                         //format date
                         self.userList.forEach((item, index) => {
                             if (self.userList[index].email_verified_at) {
@@ -87,14 +87,44 @@ angular.
                 };
 
                 self.selectedRow = null;
-                self.rowHighilited = function (id, name, email, active) {
+                self.rowHighilited = function (id, name, email, active, roleSelected) {
                     self.selectedRow = id;
                     self.valueObject.id = id;
                     self.valueObject.name = name;
                     self.valueObject.email = email;
                     self.valueObject.active = active;
 
+               
+                   
+
+                  //  self.valueObject.roles = userService.searchRoleObject(roleSelected, self.RolesList);
+                   /// alert(self.valueObject.roles.id);
+                    self.selRole = userService.searchRoleObject(roleSelected, self.RolesList);
+                     alert(JSON.parse(self.selRole));
                 };
+
+                self.RolesIndex = function () {
+                    userService.rolesIndex( function(response) {
+                        if(response.message = "RolesList retrieved successfully"){
+                            self.RolesList = response.Roles;
+                            alert(JSON.stringify(self.RolesList))
+                        }
+                        else {
+                            alert(JSON.stringify(response));
+                        }
+                    
+                    
+                    })
+                };
+
+                self.RolesIndex();
+
+
+                self.updateSelRole = function () {
+                   // self.ValueObject.Roles = $scope.selDepartament.DepartamentId;
+                   self.ValueObject.Roles = self.selRole.name;
+                   
+                }
 
 
             }

@@ -16,15 +16,17 @@
           <th>Email</th>
           <th>Status</th>
           <th>VerifiedAt</th>
+          <th>Roles</th>
         </tr>
 
-        <tr ng-repeat="user in $ctrl.userList track by $index" ng-click="$ctrl.rowHighilited(user.id, user.name, user.email, user.active)"
+        <tr ng-repeat="user in $ctrl.userList track by $index" ng-click="$ctrl.rowHighilited(user.id, user.name, user.email, user.active, user.roles)"
           ng-class="{ selected: user.id === $ctrl.selectedRow}">
           <td>{{user.id}}</td>
           <td>{{user.name}}</td>
           <td>{{user.email}}</td>
           <td>{{user.active}}</td>
           <td>{{user.email_verified_at}}</td>
+          <td>{{user.roles}}</td>
         </tr>
 
       </table>
@@ -50,6 +52,18 @@
         <td> Active<input ng-model="$ctrl.valueObject.active"></td>
         <td> New Password<input ng-model="$ctrl.valueObject.password"></td>
         
+        <td>Roles :</td>
+        <td>
+          <select ng-model="$ctrl.selRole" ng-selected="$ctrl.RolesList" ng-change="$ctrl.updateSelRole()"
+          ng-options="selectedRole as selectedRole.name for selectedRole in $ctrl.RolesList track by selectedRole.id">
+             </select>
+        </td>
+
+
+
+        <select ng-model="selDepartament" ng-selected="DepartamentList" ng-change="$ctrl.updateSelDep()"
+ ng-options="selectedDepartament as selectedDepartament.DepartamentName for selectedDepartament in DepartamentList track by selectedDepartament.DepartamentId">
+    </select>
       </div>
       <!--Sidebar content-->
       <!-- 

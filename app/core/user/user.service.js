@@ -93,5 +93,32 @@ angular.module('core.user')
 
                 }
 
+                service.rolesIndex =function( callback){            
+    
+                    $http({
+                        method: 'GET',
+                        url: 'http://localhost:8000/api/auth/users/roles',
+                        headers : {'Content-Type': 'application/json; charset=UTF-8'} 
+                    }).then(function successCallback(response) {
+
+                        callback(response.data);
+                
+                    }, function errorCallback(response) {
+                        callback(response);
+                
+                    });
+
+                }
+
+
+                service.searchRoleObject=function(nameKey, myArray){
+                    for (var i=0; i < myArray.length; i++) {
+                            if (myArray[i].name === nameKey) {
+                              return myArray[i];
+                             }
+                        }
+                    }
+                
+
                 return service;
             }])
