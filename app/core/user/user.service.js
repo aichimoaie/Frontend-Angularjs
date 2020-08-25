@@ -29,14 +29,15 @@ angular.module('core.user')
 
 
 
-                service.store = function (_name, _email, _password, callback) {
+                service.store = function (_name, _email, _password, _roles, callback) {
 
 
                     var formData = {
                         name: _name,
                         email: _email,
                         password: _password,
-                        password_confirmation: _password
+                        password_confirmation: _password,
+                        roles: _roles
                     };
 
                     $http({
@@ -56,9 +57,9 @@ angular.module('core.user')
                     });
                 };
 
-                service.update =function(_id, _name, _email, callback){
+                service.update =function(_id, _name, _email, _roles, callback){
             
-                    var formData={name: _name, email: _email};
+                    var formData={name: _name, email: _email, roles: _roles};
                     
                     $http({
                         method: 'PATCH',
@@ -111,13 +112,22 @@ angular.module('core.user')
                 }
 
 
-                service.searchRoleObject=function(nameKey, myArray){
+                service.findById=function(myArray,id){
                     for (var i=0; i < myArray.length; i++) {
-                            if (myArray[i].name === nameKey) {
+                            if (myArray[i].id === id) {
                               return myArray[i];
                              }
                         }
                     }
+
+                service.findByName = function(source, name) {
+                    for (var i = 0; i < source.length; i++) {
+                      if (source[i].name === name) {
+                        return source[i];
+                      }
+                    }
+                    throw "Couldn't find object with name: " + name;
+                  }
                 
 
                 return service;

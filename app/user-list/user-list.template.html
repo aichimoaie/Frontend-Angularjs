@@ -54,17 +54,22 @@
         
         <td>Roles :</td>
         <td>
-          <select ng-model="$ctrl.selRole" ng-selected="$ctrl.RolesList" ng-change="$ctrl.updateSelRole()"
-          ng-options="selectedRole as selectedRole.name for selectedRole in $ctrl.RolesList track by selectedRole.id">
+          <select id='rolesNGSelect' ng-model="$ctrl.selRole" ng-selected="$ctrl.RolesList" ng-change="$ctrl.updateSelRole()"
+          ng-options="selectedRole.id as selectedRole.name for selectedRole in $ctrl.RolesList track by selectedRole.id">
              </select>
         </td>
 
 
 
-        <select ng-model="selDepartament" ng-selected="DepartamentList" ng-change="$ctrl.updateSelDep()"
- ng-options="selectedDepartament as selectedDepartament.DepartamentName for selectedDepartament in DepartamentList track by selectedDepartament.DepartamentId">
-    </select>
-      </div>
+      <!-- <select ng-model="customer.State" 
+      ng-options="x.Id as x.state for x in sates"
+      ng-change = "getStateCities()"
+      class="form-control"
+      ng-required="true"
+      id="state"> -->
+
+
+
       <!--Sidebar content-->
       <!-- 
       <p>

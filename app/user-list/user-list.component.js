@@ -41,8 +41,9 @@ angular.
                     var name = self.valueObject.name;
                     var email = self.valueObject.email;
                     var password = self.valueObject.password;
+                    var roles = self.valueObject.roles;
 
-                    userService.store(name, email, password, function (response) {
+                    userService.store(name, email, password,roles, function (response) {
                         console.log(JSON.stringify(response));
                         if (response.message = "Created successfully") {
                             self.index();
@@ -55,7 +56,8 @@ angular.
                     var inputID = self.valueObject.id;
                     var inputName = self.valueObject.name;
                     var inputEmail = self.valueObject.email;
-                    userService.update(inputID, inputName, inputEmail, function (response) {
+                    var roles = self.valueObject.roles;
+                    userService.update(inputID, inputName, inputEmail, roles, function (response) {
                         if (response.message = "Updated successfully") {
                             self.index();
                         }
@@ -86,6 +88,7 @@ angular.
                     });
                 };
 
+                // when a row in table is clicked, it should store valuesObjects
                 self.selectedRow = null;
                 self.rowHighilited = function (id, name, email, active, roleSelected) {
                     self.selectedRow = id;
@@ -95,14 +98,23 @@ angular.
                     self.valueObject.active = active;
 
                
-                   
+                    
 
-                  //  self.valueObject.roles = userService.searchRoleObject(roleSelected, self.RolesList);
-                   /// alert(self.valueObject.roles.id);
-                    self.selRole = userService.searchRoleObject(roleSelected, self.RolesList);
-                     alert(JSON.parse(self.selRole));
+                    ////Update rolesNGSelect current selection & stored value object
+                   self.valueObject.roles =userService.findByName(self.RolesList, roleSelected).name;
+                   self.selRole = userService.findByName( self.RolesList, roleSelected);
+                    
                 };
 
+                //Update rolesNGSelect current selection & stored value object
+                self.updateSelRole = function ( ) {
+                    self.valueObject.roles = userService.findById( self.RolesList,self.selRole).name;
+                    self.selRole=userService.findByName( self.RolesList,self.valueObject.roles );
+            
+
+                 }
+
+                 //Render values into rolesNGSelect {id: , name: }
                 self.RolesIndex = function () {
                     userService.rolesIndex( function(response) {
                         if(response.message = "RolesList retrieved successfully"){
@@ -112,19 +124,13 @@ angular.
                         else {
                             alert(JSON.stringify(response));
                         }
-                    
-                    
                     })
                 };
 
                 self.RolesIndex();
+            
 
-
-                self.updateSelRole = function () {
-                   // self.ValueObject.Roles = $scope.selDepartament.DepartamentId;
-                   self.ValueObject.Roles = self.selRole.name;
-                   
-                }
+                
 
 
             }
