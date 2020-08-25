@@ -7,7 +7,7 @@ angular.
       $routeProvider.
         when('/phones', {
           template: '<phone-list></phone-list>',
-          allowAnonymus: true
+         // allowAnonymus: true
         }).
         when('/phones/:phoneId', {
           template: '<phone-detail></phone-detail>'
@@ -28,7 +28,7 @@ angular.
         }).
         when('/user', {
           template: '<user-list></user-list>',
-          allowAnonymus: true
+        //  allowAnonymus: true
         }).
         when('/:countryId', {
           template: '<country-detail></country-detail>'
