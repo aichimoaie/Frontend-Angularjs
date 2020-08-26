@@ -5,9 +5,13 @@ angular.
     module('userList').
     component('userList', {
         templateUrl: 'user-list/user-list.template.html',
-        controller: ['userService',
-            function userListController(userService) {
+        controller: ['userService','AclService',
+            function userListController(userService,AclService) {
                 var self = this;
+              
+              
+           
+
 
                 self.valueObject = {
                     id: 0,

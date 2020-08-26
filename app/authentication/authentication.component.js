@@ -21,7 +21,8 @@ angular.
                     authenticationService.Login(self.valueObject.email, self.valueObject.password, function (response) {
                        
                         if (response.data.message === "Successfully logged in") {
-                             authenticationService.SetCredentials(response.data.email,response.data.access_token);
+                           
+                             authenticationService.SetCredentials(response.data.email,response.data.access_token, response.data.role);
                              $location.path('/phones');
                             }
                             else if(response.data.message ==='Unauthorized'){

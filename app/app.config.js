@@ -25,10 +25,30 @@ angular.
         when('/register', {
           template: '<registration></registration>',
           allowAnonymus: true
-        }).
-        when('/user', {
-          template: '<user-list></user-list>',
-        //  allowAnonymus: true
+        })
+        // .
+        // when('/user', {
+        //   template: '<user-list></user-list>',
+        //   allowAnonymus: true
+        // })
+
+        .when('/user', {
+          //component: 'userList',
+          template: '<user-list> </user-list>',
+          resolve : {
+            'acl' : ['$q', 'AclService', function($q, AclService){
+              if(AclService.can('view_users_content')){
+                // Has proper permissions
+                console.log('has proper perm');
+        
+                return true;
+              } else {
+                // Does not have permission
+                console.log('has proper perm');
+                return $q.reject('Unauthorized');
+              }
+            }]
+          }
         }).
         when('/:countryId', {
           template: '<country-detail></country-detail>'

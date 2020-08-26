@@ -27,12 +27,13 @@ angular.module('core.authentication')
                     });
                 };
 
-                service.SetCredentials = function (_email, _token) {
+                service.SetCredentials = function (_email, _token ,_role) {
 
                     $rootScope.globals = {
                         currentUser: {
                             email: _email,
-                            token: _token
+                            token: _token,
+                            role : _role
                         }
                     };
 
@@ -45,20 +46,33 @@ angular.module('core.authentication')
                     $rootScope.globals = {};
                     // $cookies.remove('currentUser');
                     $window.localStorage.clear();
-
+                    //add acl service to remove user 
                     $http.defaults.headers.common.Authorization = null;
                 };
 
                 return service;
             }])
 
-    .run(['$rootScope', '$location', '$cookies', '$http','$window',
-        function ($rootScope, $location, $cookies, $http,$window) {
+    .run(['$rootScope', '$location', '$cookies', '$http','$window','AclService',
+        function ($rootScope, $location, $cookies, $http,$window, AclService) {
 
             $rootScope.globals = /*$cookies.getObject('currentUser')*/ JSON.parse($window.localStorage.getItem('currentUser')) || {};
          
             if ($rootScope.globals.currentUser) {
                 $http.defaults.headers.common['Authorization'] = 'Bearer ' + $rootScope.globals.currentUser.token;
+                // Set ACL ROLES 
+                let role= $rootScope.globals.currentUser.role;
+                alert(typeof(role));
+                var aclData = {
+                    'admin' : ['logout', 'view_users_content'/*, 'manage_content'*/]
+                  }
+                  AclService.setAbilities(aclData);
+                
+                  // Attach the member role to the current user
+                  AclService.attachRole(role);
+                 
+                 console.log("user can view user cont" + AclService.can('view_users_content')); 
+            
             }
             $rootScope.$on('$routeChangeStart', function (event, next, current) {
             
