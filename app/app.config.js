@@ -7,7 +7,7 @@ angular.
       $routeProvider.
         when('/phones', {
           template: '<phone-list></phone-list>',
-         // allowAnonymus: true
+          // allowAnonymus: true
         }).
         when('/phones/:phoneId', {
           template: '<phone-detail></phone-detail>'
@@ -35,16 +35,14 @@ angular.
         .when('/user', {
           //component: 'userList',
           template: '<user-list> </user-list>',
-          resolve : {
-            'acl' : ['$q', 'AclService', function($q, AclService){
-              if(AclService.can('view_users_content')){
-                // Has proper permissions
-                console.log('has proper perm');
-        
+          resolve: {
+            'acl': ['$q', 'AclService', function ($q, AclService) {
+              if (AclService.can('view_users_content')) {
+                // Does have permission
                 return true;
               } else {
                 // Does not have permission
-                console.log('has proper perm');
+                // console.log('don proper perm');
                 return $q.reject('Unauthorized');
               }
             }]
@@ -53,7 +51,7 @@ angular.
         when('/:countryId', {
           template: '<country-detail></country-detail>'
         }).
-     
+
         otherwise('/phones');
     }
   ]);

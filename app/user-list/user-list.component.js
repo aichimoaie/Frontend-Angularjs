@@ -5,30 +5,25 @@ angular.
     module('userList').
     component('userList', {
         templateUrl: 'user-list/user-list.template.html',
-        controller: ['userService','AclService',
-            function userListController(userService,AclService) {
+        controller: ['userService', 'AclService',
+            function userListController(userService, AclService) {
                 var self = this;
-              
-              
-           
-
 
                 self.valueObject = {
                     id: 0,
                     name: "",
                     email: "",
                     active: 0,
-                    password :"",
-                    roles : ""
+                    password: "",
+                    roles: ""
 
                 }
 
-            
+
                 self.index = function () {
                     userService.index(function (response) {
 
                         self.userList = response;
-                    
                         //format date
                         self.userList.forEach((item, index) => {
                             if (self.userList[index].email_verified_at) {
@@ -47,10 +42,12 @@ angular.
                     var password = self.valueObject.password;
                     var roles = self.valueObject.roles;
 
-                    userService.store(name, email, password,roles, function (response) {
-                        console.log(JSON.stringify(response));
+                    userService.store(name, email, password, roles, function (response) {
                         if (response.message = "Created successfully") {
                             self.index();
+                        }
+                        else {
+                            alert(JSON.stringify(response));
                         }
                     });
                 }
@@ -65,7 +62,9 @@ angular.
                         if (response.message = "Updated successfully") {
                             self.index();
                         }
-                        else { alert(response.message); }
+                        else {
+                            alert(JSON.stringify(response));
+                        }
                     });
                 };
 
@@ -88,7 +87,9 @@ angular.
                         if (response.message = "Deleted") {
                             self.index();
                         }
-                        else { alert(response.message); }
+                        else {
+                            alert(JSON.stringify(response));
+                        }
                     });
                 };
 
@@ -101,29 +102,28 @@ angular.
                     self.valueObject.email = email;
                     self.valueObject.active = active;
 
-               
-                    
+
+
 
                     ////Update rolesNGSelect current selection & stored value object
-                   self.valueObject.roles =userService.findByName(self.RolesList, roleSelected).name;
-                   self.selRole = userService.findByName( self.RolesList, roleSelected);
-                    
+                    self.valueObject.roles = userService.findByName(self.RolesList, roleSelected).name;
+                    self.selRole = userService.findByName(self.RolesList, roleSelected);
+
                 };
 
                 //Update rolesNGSelect current selection & stored value object
-                self.updateSelRole = function ( ) {
-                    self.valueObject.roles = userService.findById( self.RolesList,self.selRole).name;
-                    self.selRole=userService.findByName( self.RolesList,self.valueObject.roles );
-            
+                self.updateSelRole = function () {
+                    self.valueObject.roles = userService.findById(self.RolesList, self.selRole).name;
+                    self.selRole = userService.findByName(self.RolesList, self.valueObject.roles);
 
-                 }
 
-                 //Render values into rolesNGSelect {id: , name: }
+                }
+
+                //Render values into rolesNGSelect {id: , name: }
                 self.RolesIndex = function () {
-                    userService.rolesIndex( function(response) {
-                        if(response.message = "RolesList retrieved successfully"){
+                    userService.rolesIndex(function (response) {
+                        if (response.message = "RolesList retrieved successfully") {
                             self.RolesList = response.Roles;
-                            alert(JSON.stringify(self.RolesList))
                         }
                         else {
                             alert(JSON.stringify(response));
@@ -132,9 +132,9 @@ angular.
                 };
 
                 self.RolesIndex();
-            
 
-                
+
+
 
 
             }
@@ -143,8 +143,8 @@ angular.
     .directive('myEdit', function () {
         return {
 
-            controller: function() {
-                self=this;
+            controller: function () {
+                self = this;
                 self.selectedRow = null;
                 self.rowHighilited = function (id, name, email, active) {
                     self.selectedRow = id;
@@ -155,11 +155,11 @@ angular.
                     alert("changed");
 
                 };
-              },
+            },
             restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
-             scope: {
-                 data: '='         
-                 },
-                 templateUrl: 'user-list/table-directive.template.html',
-             }
+            scope: {
+                data: '='
+            },
+            templateUrl: 'user-list/table-directive.template.html',
+        }
     });

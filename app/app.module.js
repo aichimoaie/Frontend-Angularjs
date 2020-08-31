@@ -5,7 +5,6 @@ angular.module('phonecatApp', [
   'ngAnimate',
   'ngRoute',
   'ngCookies',
-
   'mm.acl',
   'core',
   'phoneDetail',
@@ -14,4 +13,6 @@ angular.module('phonecatApp', [
   'officeList',
   'userList',
   'sallaryList'
-])
+]).controller('IndexController', ['$scope','AclService', function($scope, AclService){
+  $scope.can=AclService.can;
+}]);
