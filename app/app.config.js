@@ -31,7 +31,10 @@ angular.
         //   template: '<user-list></user-list>',
         //   allowAnonymus: true
         // })
-
+        .
+        when('/quizzExam', {
+          template: '<quizz-exam></quizz-exam>',
+        })
         .when('/user', {
           //component: 'userList',
           template: '<user-list> </user-list>',

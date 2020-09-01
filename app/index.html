@@ -16,7 +16,7 @@
   <script src="lib/angular-cookies/angular-cookies.js"></script>
 
   <script src="lib/angular-acl/angular-acl.js"></script>
-
+<script src="lib/angular-sanitize/angular-sanitize.js"></script>
   
   <script src="app.module.js"></script>
   <script src="app.config.js"></script>
@@ -53,10 +53,18 @@
   <script src="user-list/user-list.component.js"></script>
 
 
-
+  <script src="sallary-list/sallary-list.service.js"></script>
   <script src="sallary-list/sallary-list.module.js"></script>
   <script src="sallary-list/sallary-list.component.js"></script>
-  <script src="sallary-list/sallary-list.service.js"></script>
+
+
+
+
+  <script src="quizz-exam/quizz-exam.module.js"></script>
+  <script src="quizz-exam/quizz-exam.service.js"></script>
+  <script src="quizz-exam/quizz-exam.component.js"></script>
+
+
 
 
 </head>
@@ -76,6 +84,7 @@
           <li><a href="#!office"><i class="fa fa-shield"></i> Birouri</a></li>
           <li><a href="#!departament"><i class="fa fa-comment"></i> Departamente</a></li>
           <li><a href="#!salar"><i class="fa fa-comment"></i> Salarii</a></li>
+          <li><a href="#!quizzExam"><i class="fa fa-comment"></i> QuizzExam</a></li>
 
 
           <li ng-if="hasCookie()"><a href="#!login"><span class="icon mail"></span>Logout</a></li>

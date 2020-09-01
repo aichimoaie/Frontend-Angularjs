@@ -6,13 +6,15 @@ angular.module('phonecatApp', [
   'ngRoute',
   'ngCookies',
   'mm.acl',
+  'ngSanitize',
   'core',
   'phoneDetail',
   'phoneList',
   'authentication',
   'officeList',
   'userList',
-  'sallaryList'
+  'sallaryList',
+  'quizzExam'
 ]).controller('IndexController', ['$scope','AclService', function($scope, AclService){
   $scope.can=AclService.can;
 }]);
