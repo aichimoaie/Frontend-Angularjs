@@ -1,7 +1,7 @@
 {
     "quiz": {
         "id": 1,
-        "name": "<Enter Quiz Name>",
+        "name": "dc",
         "description": "<Enter Quiz Description>"
     },
     "questions": [{

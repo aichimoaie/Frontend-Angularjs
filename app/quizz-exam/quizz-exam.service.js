@@ -2,8 +2,10 @@
 
 angular.
     module('quizzExam').
-    service('helperService', ['$http',
+    factory('helperService', ['$http',
         function ($http) {
+            let id =100;
+            
             return {
                 // list: function (callback) {
                 //     $http({
@@ -120,26 +122,26 @@ angular.
                     }
                     return out;
                 },
-
+                
                 createNewQuiz: function () {
                     //aici cred ca trebuie call care returneaza un pk si este asociat un profesor si o clasa si ma
                     // PK ID quizz AUTO INCREMENT, FOREIGN KEY PROFESOR SI CLASA??? 
                     // JSON FIELD EMPTY AT FIRST
                     var obj ={
                         "quiz": {
-                            "id": 1,
-                            "name": "<Enter Quiz Name>",
-                            "description": "<Enter Quiz Description>"
+                            "Id": id,
+                            "Name": "", //enter quizz name
+                            "Description": "" // enter quizz description 
                         },
                         "questions": [{
-                            "id": 101,
-                            "name": "Which of the following assemblies can be stored in Global Assembly Cache?", 
-                            "questionTypeId": 1,
+                            "Id": id,
+                            "Name": "", //enter question here 
+                            "QuestionTypeId": 1,
                             "options": [
-                                { "Id": 1001, "questionId": 101, "name": "<Add your option here>", "isAnswer": true },
-                                { "Id": 1002, "questionId": 101, "name": "<Add your option here>", "isAnswer": false },
-                                { "Id": 1003, "questionId": 101, "name": "<Add your option here>", "isAnswer": false },
-                                { "Id": 1004, "questionId": 101, "name": "<Add your option here>", "isAnswer": false }],
+                                { "Id": 1001, "questionId": id, "Name": "", "isAnswer": true },
+                                { "Id": 1002, "questionId": id, "Name": "", "isAnswer": false },
+                                { "Id": 1003, "questionId": id, "Name": "", "isAnswer": false },
+                                { "Id": 1004, "questionId": id, "Name": "", "isAnswer": false }],
                             "questionType": { "id": 1, "name": "Multiple Choice", "isActive": true }
                         }]
                     };
@@ -152,19 +154,75 @@ angular.
                     // JSON FIELD EMPTY AT FIRST
                     var obj ={
                         
-                            "id": 101,
-                            "name": "Which of the following assemblies can be stored in Global Assembly Cache?", 
-                            "questionTypeId": 1,
+                            "Id": ++id,
+                            "Name": "", //enter question here 
+                            "QuestionTypeId": 1,
                             "options": [
-                                { "Id": 1001, "questionId": 101, "name": "<Add your option here>", "isAnswer": true },
-                                { "Id": 1002, "questionId": 101, "name": "<Add your option here>", "isAnswer": false },
-                                { "Id": 1003, "questionId": 101, "name": "<Add your option here>", "isAnswer": false },
-                                { "Id": 1004, "questionId": 101, "name": "<Add your option here>", "isAnswer": false }],
+                                { "Id": 1001, "questionId": id, "Name": "", "isAnswer": false },
+                                { "Id": 1002, "questionId": id, "Name": "", "isAnswer": false },
+                                { "Id": 1003, "questionId": id, "Name": "", "isAnswer": false },
+                                { "Id": 1004, "questionId": id, "Name": "", "isAnswer": false }],
                          "questionType": { "id": 1, "name": "Multiple Choice", "isActive": true }
                         
                     };
                     return obj;
-                }
+                },
+
+                getQuiz : function (callback){
+
+                    $http({
+                                method: 'GET',
+                                url: 'http://localhost:8000/api/quiz'
+                            }).then(function successCallback(response) {
+                               console.log(response.data.quizzes[0])
+                               
+                                callback(response.data.quizzes[0]);
+        
+                            }, function errorCallback(response) {
+                                callback(response);
+        
+                            });
+                },
+                getListOfQuizzes : function (callback){
+
+                    $http({
+                                method: 'GET',
+                                url: 'http://localhost:8000/api/quiz/list'
+                            }).then(function successCallback(response) {
+                                callback(response.data.quizzes);
+        
+                            }, function errorCallback(response) {
+                                callback(response);
+        
+                            });
+                },
+                 storeQuiz: function (_payLoad,qName,qDescription,qConfig, callback) {
+                    var formData = {
+                        payLoad: _payLoad,
+                        Name:qName,
+                        Description: qDescription,
+                        Config: qConfig
+                    
+                    };
+
+                    $http({
+                        method: 'POST',
+                        url: 'http://localhost:8000/api/quiz',
+                        data: formData,
+                        headers: { 'Content-Type': 'application/json; charset=UTF-8' }
+                    }).then(function successCallback(response) {
+
+                        callback(response.data);
+
+                    }, function errorCallback(response) {
+                        callback(response);
+
+                    });
+                },
+
+
+
+             
             }
         }
     ]);
