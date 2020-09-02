@@ -137,12 +137,12 @@ angular.
                             "Id": id,
                             "Name": "", //enter question here 
                             "QuestionTypeId": 1,
-                            "options": [
-                                { "Id": 1001, "questionId": id, "Name": "", "isAnswer": true },
-                                { "Id": 1002, "questionId": id, "Name": "", "isAnswer": false },
-                                { "Id": 1003, "questionId": id, "Name": "", "isAnswer": false },
-                                { "Id": 1004, "questionId": id, "Name": "", "isAnswer": false }],
-                            "questionType": { "id": 1, "name": "Multiple Choice", "isActive": true }
+                            "Options": [
+                                { "Id": 1001, "QuestionId": id, "Name": "", "IsAnswer": true },
+                                { "Id": 1002, "QuestionId": id, "Name": "", "IsAnswer": false },
+                                { "Id": 1003, "QuestionId": id, "Name": "", "IsAnswer": false },
+                                { "Id": 1004, "QuestionId": id, "Name": "", "IsAnswer": false }],
+                            "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
                         }]
                     };
                     return obj;
@@ -157,12 +157,12 @@ angular.
                             "Id": ++id,
                             "Name": "", //enter question here 
                             "QuestionTypeId": 1,
-                            "options": [
-                                { "Id": 1001, "questionId": id, "Name": "", "isAnswer": false },
-                                { "Id": 1002, "questionId": id, "Name": "", "isAnswer": false },
-                                { "Id": 1003, "questionId": id, "Name": "", "isAnswer": false },
-                                { "Id": 1004, "questionId": id, "Name": "", "isAnswer": false }],
-                         "questionType": { "id": 1, "name": "Multiple Choice", "isActive": true }
+                            "Options": [
+                                { "Id": 1001, "QuestionId": id, "Name": "", "IsAnswer": false },
+                                { "Id": 1002, "QuestionId": id, "Name": "", "IsAnswer": false },
+                                { "Id": 1003, "QuestionId": id, "Name": "", "IsAnswer": false },
+                                { "Id": 1004, "QuestionId": id, "Name": "", "IsAnswer": false }],
+                         "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
                         
                     };
                     return obj;

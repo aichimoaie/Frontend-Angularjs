@@ -40,7 +40,7 @@ angular.
                    // alert(JSON.stringify(ques));
                   //  console.log(ques);
                     //$scope.mode = 'result';
-                    helper.storeQuiz( $scope.questions, $scope.quiz.Name, $scope.quiz.Description,$scope.config, function (res) {
+                    helper.storeQuiz( $scope.questions, $scope.quiz.Name, $scope.quiz.Description,$scope.defaultConfig, function (res) {
                        alert(JSON.stringify(res));
                     })
                 }
@@ -92,7 +92,7 @@ angular.
 
                 $scope.isAnswered = function (index) {
                     var answered = 'Not Answered';
-                    $scope.questions[index].options.forEach(function (element, index, array) {
+                    $scope.questions[index].Options.forEach(function (element, index, array) {
                         if (element.selected == true) {
                             answered = 'Answered';
                             return false;
@@ -103,9 +103,9 @@ angular.
 
                 $scope.isCorrect = function (question) {
                     var result = 'correct';
-                    var options = question.options || [];
+                    var options = question.Options || [];
                     options.forEach(function (option, index, array) {
-                        if ($scope.toBool(option.selected) != option.isAnswer) {
+                        if ($scope.toBool(option.selected) != option.IsAnswer) {
                             result = 'wrong';
                             return false;
                         }

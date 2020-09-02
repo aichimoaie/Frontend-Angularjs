@@ -32,12 +32,12 @@
                 <h3>{{currentPage}}. <input type="text" ng-model="question.Name" placeholder="Enter question here" />
                 </h3>
                 <div class="options">
-                    <div ng-repeat="option in question.options track by $index">
-                        <input id="{{option.Id}}" type="checkbox" ng-model="option.isAnswer" />
+                    <div ng-repeat="option in question.Options track by $index">
+                        <input id="{{option.Id}}" type="checkbox" ng-model="option.IsAnswer" />
                         <input type="text" ng-model="option.Name" placeholder="<Add your option here>" />
                     </div>
                 </div>
-                <span class="label label-success btn" ng-click="question.options.push({});">Add Option</span>
+                <span class="label label-success btn" ng-click="question.Options.push({});">Add Option</span>
                 <div>
                     Note:
                     <ul>
@@ -67,8 +67,8 @@
             <div class="result-question">
                 <h3>{{$index + 1}}. {{question.Name}}</h3>
                 <div class="result-options">
-                    <div ng-repeat="option in question.options track by $index"
-                        ng-class="{isAnswerhighlightRow: option.isAnswer === true}">
+                    <div ng-repeat="option in question.Options track by $index"
+                        ng-class="{isAnswerhighlightRow: option.IsAnswer === true}">
 
                         {{option.Name}}
                     </div>
